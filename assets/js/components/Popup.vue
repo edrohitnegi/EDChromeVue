@@ -1,7 +1,9 @@
 <template>
     <div class="wrapper">
         <h1 class="title">{{name}}</h1>
+        <p>{{chrome_data}}</p>
         <div class="buttons">
+            <button @click="setValue">Trial</button>
             <button @click="login" v-if="!isloggedIn">Login</button>
             <button @click="logout" v-if="isloggedIn">Logout</button>
         </div>
@@ -13,7 +15,8 @@ export default {
     data() {
         return {
             name: "EDChrome",
-            isloggedIn: false
+            isloggedIn: false,
+            chrome_data: {}
         }
     },
     methods: {
@@ -31,7 +34,15 @@ export default {
             })
             this.isloggedIn = false
         },
+        setValue(){
+            chrome.storage.sync.get(['links'], function (result) {
+                this.chrome_data = result;
+            })
+        }
     },
+    created() {
+        this.setValue()
+    }
 }
 </script>
 

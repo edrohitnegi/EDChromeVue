@@ -22,11 +22,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       name: "EDChrome",
-      isloggedIn: false
+      isloggedIn: false,
+      chrome_data: {}
     };
   },
   methods: {
@@ -51,7 +54,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.isloggedIn = false;
+    },
+    setValue: function setValue() {
+      chrome.storage.sync.get(['links'], function (result) {
+        this.chrome_data = result;
+      });
     }
+  },
+  created: function created() {
+    this.setValue();
   }
 });
 
@@ -144,7 +155,11 @@ var render = function() {
   return _c("div", { staticClass: "wrapper" }, [
     _c("h1", { staticClass: "title" }, [_vm._v(_vm._s(_vm.name))]),
     _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.chrome_data))]),
+    _vm._v(" "),
     _c("div", { staticClass: "buttons" }, [
+      _c("button", { on: { click: _vm.setValue } }, [_vm._v("Trial")]),
+      _vm._v(" "),
       !_vm.isloggedIn
         ? _c("button", { on: { click: _vm.login } }, [_vm._v("Login")])
         : _vm._e(),

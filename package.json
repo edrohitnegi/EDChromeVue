@@ -19,6 +19,11 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "neo4j-driver": "^4.2.3"
+        "axios": "^0.21.1",
+        "dotenv": "^8.2.0",
+        "moment": "^2.29.1",
+        "neo4j-driver": "^4.2.3",
+        "node-url-shortener": "^1.1.11",
+        "path-browserify": "^1.0.1"
     }
 }

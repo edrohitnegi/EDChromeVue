@@ -1,3 +1,4 @@
+var axios = require('axios');
 let user_signed_in = false;
 const DISCORD_URI = 'https://discord.com/api/oauth2/authorize';
 const CLIENT_ID = encodeURIComponent('822766443367235616');
@@ -13,8 +14,6 @@ chrome.runtime.onInstalled.addListener(() => {
     // console.log('ON Installed')
 });
 
-// fDgp0IofItLMY6PZ5iOtWkw6748Xv1
-// fDgp0IofItLMY6PZ5iOtWkw6748Xv1
 
 function get_discord_uri() {
     const nonce = encodeURIComponent(Math.random().toString(36).substring(2,15) + Math.random().toString(36).substring(2,15))
@@ -39,6 +38,34 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             } else {
                 user_signed_in = true;
                 console.log(redirect_uri)
+                   
+
+                //  It works to access token
+                var url = redirect_uri;
+                var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
+
+                let accessToken = access_token
+                let tokenType = 'Bearer';
+                console.log(accessToken)
+
+                fetch('https://discord.com/api/users/@me', {
+                    headers: {
+                        authorization: `${tokenType} ${accessToken}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(response => {
+                        console.log(response)
+                        chrome.storage.sync.set({
+                            user_detail: {
+                                "username":`${response.username}`,
+                                "discriminator": `${response.discriminator}`,
+                                "id": `${response.id}`,
+                                "email": `${response.email}`
+                            }
+                        })
+                    })
+                    .catch(console.error);
 
                 sendResponse('success');  // Error: It's not working
             }
@@ -50,3 +77,29 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return false;
     }
 })
+
+
+
+// // Important Detail
+
+// let acessToken = 'ads';
+// let toknType = 'Bearer';
+
+// fetch('https://discord.com/api/users/@me', {
+//     headers: {
+//         authorization: `${toknType} ${acessToken}`
+//     }
+// })
+//     .then(res => res.json())
+//     .then(response => {
+//         console.log(response)
+        
+//     })
+//     .catch(console.error);
+
+
+// //  It works to access token
+// var url = 'https://hjhfbbapcjpoodjfclmpmgildhjofanp.chromiumapp.org/#token_type=Bearer&access_token=asd&expires_in=604800&scope=identify+email&state=edlink';
+// var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
+
+// console.log(access_token)
