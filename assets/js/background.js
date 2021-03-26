@@ -1,4 +1,5 @@
 var axios = require('axios');
+var useful = require('./modules/useful_fun')
 let user_signed_in = false;
 const DISCORD_URI = 'https://discord.com/api/oauth2/authorize';
 const CLIENT_ID = encodeURIComponent('822766443367235616');
@@ -38,34 +39,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             } else {
                 user_signed_in = true;
                 console.log(redirect_uri)
-                   
-
-                //  It works to access token
-                var url = redirect_uri;
-                var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
-
-                let accessToken = access_token
-                let tokenType = 'Bearer';
-                console.log(accessToken)
-
-                fetch('https://discord.com/api/users/@me', {
-                    headers: {
-                        authorization: `${tokenType} ${accessToken}`
-                    }
-                })
-                    .then(res => res.json())
-                    .then(response => {
-                        console.log(response)
-                        chrome.storage.sync.set({
-                            user_detail: {
-                                "username":`${response.username}`,
-                                "discriminator": `${response.discriminator}`,
-                                "id": `${response.id}`,
-                                "email": `${response.email}`
-                            }
-                        })
-                    })
-                    .catch(console.error);
+                
 
                 sendResponse('success');  // Error: It's not working
             }

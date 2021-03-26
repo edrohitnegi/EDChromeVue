@@ -1842,6 +1842,8 @@ module.exports = {
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
+var useful = __webpack_require__(/*! ./modules/useful_fun */ "./assets/js/modules/useful_fun.js");
+
 var user_signed_in = false;
 var DISCORD_URI = 'https://discord.com/api/oauth2/authorize';
 var CLIENT_ID = encodeURIComponent('822766443367235616');
@@ -1877,30 +1879,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log(redirect_uri);
       } else {
         user_signed_in = true;
-        console.log(redirect_uri); //  It works to access token
-
-        var url = redirect_uri;
-        var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
-        var accessToken = access_token;
-        var tokenType = 'Bearer';
-        console.log(accessToken);
-        fetch('https://discord.com/api/users/@me', {
-          headers: {
-            authorization: "".concat(tokenType, " ").concat(accessToken)
-          }
-        }).then(function (res) {
-          return res.json();
-        }).then(function (response) {
-          console.log(response);
-          chrome.storage.sync.set({
-            user_detail: {
-              "username": "".concat(response.username),
-              "discriminator": "".concat(response.discriminator),
-              "id": "".concat(response.id),
-              "email": "".concat(response.email)
-            }
-          });
-        })["catch"](console.error);
+        console.log(redirect_uri);
         sendResponse('success'); // Error: It's not working
       }
     }); // sendResponse('success'); 
@@ -1927,6 +1906,75 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // var url = 'https://hjhfbbapcjpoodjfclmpmgildhjofanp.chromiumapp.org/#token_type=Bearer&access_token=asd&expires_in=604800&scope=identify+email&state=edlink';
 // var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
 // console.log(access_token)
+
+/***/ }),
+
+/***/ "./assets/js/modules/useful_fun.js":
+/*!*****************************************!*\
+  !*** ./assets/js/modules/useful_fun.js ***!
+  \*****************************************/
+/***/ ((module) => {
+
+// Favicon Set Avatar Url
+var getFavicon = function getFavicon() {
+  var favicon = undefined;
+  var nodeList = document.getElementsByTagName("link");
+
+  for (var i = 0; i < nodeList.length; i++) {
+    if (nodeList[i].getAttribute("rel") == "icon" || nodeList[i].getAttribute("rel") == "shortcut icon") {
+      favicon = nodeList[i].getAttribute("href");
+    }
+  }
+
+  return favicon;
+}; //Getting Image url
+
+
+if (getFavicon() === undefined) {
+  var img = "https://i1.wp.com/www.edvanta.com/wp-content/uploads/2017/05/favicon.png?fit=32%2C31&ssl=1";
+} else {
+  var img = getFavicon();
+} //Extract Plain from Domain
+//Extract domain Name from url
+
+
+function DomainNameExtract(url) {
+  var domain_name = "".concat(url).match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/img).toString().replace('https://www.', '').replace('.com', '');
+  return domain_name;
+} //Discord Token and UserDetail Collector
+
+
+function DiscordUserDetails(redirect_url_with_token) {
+  //  It works to access token
+  var url = redirect_url_with_token;
+  var access_token = url.match(/\#(?:token_type=Bearer&access_token)\=([\S\s]*?)\&/)[1];
+  var accessToken = access_token;
+  var tokenType = 'Bearer';
+  console.log(accessToken);
+  fetch('https://discord.com/api/users/@me', {
+    headers: {
+      authorization: "".concat(tokenType, " ").concat(accessToken)
+    }
+  }).then(function (res) {
+    return res.json();
+  }).then(function (response) {
+    console.log(response);
+    chrome.storage.sync.set({
+      user_detail: {
+        "username": "".concat(response.username),
+        "discriminator": "".concat(response.discriminator),
+        "id": "".concat(response.id),
+        "email": "".concat(response.email)
+      }
+    });
+  })["catch"](console.error);
+}
+
+module.exports = {
+  DomainNameExtract: DomainNameExtract,
+  getFavicon: getFavicon,
+  DiscordUserDetails: DiscordUserDetails
+};
 
 /***/ }),
 
