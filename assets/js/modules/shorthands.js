@@ -1,5 +1,6 @@
 var download = require('./download');
 var discord = require('./discord_connect')
+var neo4j_send = require('./neo4j')
 
 function ShortHand() {
     //shorthands
@@ -31,6 +32,9 @@ document.addEventListener('keydown', function (e) {
     if((e.key === "d") && e.altKey) {
         discord.DiscordSend();
     }
+    if(e.key === 's' && e.altKey) {
+      neo4j_send.Neo4jSend();
+    } 
   });
 }
 

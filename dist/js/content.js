@@ -1868,7 +1868,7 @@ function DiscordSend() {
 
   var zelda_msg = {
     "content": "!link ".concat(document.title, " ").concat(window.location.href),
-    "username": "BOOST!!! - zelda",
+    "username": "Prashant",
     "avatar_url": "https://i1.wp.com/www.edvanta.com/wp-content/uploads/2017/05/favicon.png?fit=32%2C31&ssl=1"
   };
   fetch(whurl, {
@@ -2096,6 +2096,52 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./assets/js/modules/neo4j.js":
+/*!************************************!*\
+  !*** ./assets/js/modules/neo4j.js ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+
+var current_time = moment().format('LLL');
+var data = {};
+
+function Neo4jSend() {
+  chrome.storage.sync.get(['user_detail'], function (result) {
+    // console.log(result)
+    // console.log(result.user_detail.username)
+    // console.log(result.user_detail.discriminator)
+    // console.log(result.user_detail.id)
+    // console.log(result.user_detail.email)
+    data["username"] = result.user_detail.username;
+    data["discriminator"] = result.user_detail.discriminator;
+    data["email"] = result.user_detail.email;
+    data["title"] = document.title;
+    data["url"] = window.location.href;
+    data["time"] = current_time;
+    console.log(data.username); //Working Query, Please dont touch 
+
+    var query = {
+      "query": "MERGE (a:User{username: '".concat(data.username, "', discriminator: '").concat(data.discriminator, "', email: '").concat(data.email, "'}) MERGE (b:Link{uri: '").concat(data.url, "'}) MERGE (a)-[:VISITED {timestamps: '").concat(data.time, "'}]->(b) SET b.message = '").concat(data.title, "';")
+    };
+    fetch('https://thoughtjumper.edvanta.com/api/v1/query', {
+      method: "post",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(query)
+    });
+    console.log(query);
+  });
+}
+
+module.exports = {
+  Neo4jSend: Neo4jSend
+};
+
+/***/ }),
+
 /***/ "./assets/js/modules/shorthands.js":
 /*!*****************************************!*\
   !*** ./assets/js/modules/shorthands.js ***!
@@ -2105,6 +2151,8 @@ module.exports = {
 var download = __webpack_require__(/*! ./download */ "./assets/js/modules/download.js");
 
 var discord = __webpack_require__(/*! ./discord_connect */ "./assets/js/modules/discord_connect.js");
+
+var neo4j_send = __webpack_require__(/*! ./neo4j */ "./assets/js/modules/neo4j.js");
 
 function ShortHand() {
   //shorthands
@@ -2136,6 +2184,10 @@ function ShortHand() {
 
     if (e.key === "d" && e.altKey) {
       discord.DiscordSend();
+    }
+
+    if (e.key === 's' && e.altKey) {
+      neo4j_send.Neo4jSend();
     }
   });
 }
@@ -23846,15 +23898,6 @@ instant.instant_execute(); // Shorcut Key definition
 _short.ShortHand();
 
 console.log('%c BOOST!!', 'font-weight: bold; font-size: 30px;color: white; text-shadow: 2px 2px 0 rgb(217,31,38)'); // const driver = neo4j.driver('neo4j://localhost:7687', neo4j.auth.basic('neo4j', 'edvanta'))
-//TO access detail
-
-chrome.storage.sync.get(['user_detail'], function (result) {
-  console.log(result);
-  console.log(result.user_detail.username);
-  console.log(result.user_detail.discriminator);
-  console.log(result.user_detail.id);
-  console.log(result.user_detail.email);
-}); //avatar testing "8b153ecb09097f9be151386fbcbd7ff0"
 })();
 
 /******/ })()

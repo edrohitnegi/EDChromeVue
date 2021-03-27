@@ -30,7 +30,7 @@ function DiscordSend() {
     // To connect with zelda bolt
     const zelda_msg = {
       "content":`!link ${document.title} ${window.location.href}`,
-      "username":`BOOST!!! - zelda`,
+      "username":`Prashant`,
       "avatar_url": `https://i1.wp.com/www.edvanta.com/wp-content/uploads/2017/05/favicon.png?fit=32%2C31&ssl=1`
     }
   

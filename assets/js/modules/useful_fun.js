@@ -50,7 +50,7 @@ var getFavicon = function(){
      })
          .then(res => res.json())
          .then(response => {
-             console.log(response)
+            //  console.log(response)
              chrome.storage.sync.set({
                  user_detail: {
                      "username":`${response.username}`,

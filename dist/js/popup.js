@@ -161,11 +161,15 @@ var render = function() {
       _c("button", { on: { click: _vm.setValue } }, [_vm._v("Trial")]),
       _vm._v(" "),
       !_vm.isloggedIn
-        ? _c("button", { on: { click: _vm.login } }, [_vm._v("Login")])
+        ? _c("button", { staticClass: "state-off", on: { click: _vm.login } }, [
+            _vm._v("Login")
+          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.isloggedIn
-        ? _c("button", { on: { click: _vm.logout } }, [_vm._v("Logout")])
+        ? _c("button", { staticClass: "state-on", on: { click: _vm.logout } }, [
+            _vm._v("Logout")
+          ])
         : _vm._e()
     ])
   ])

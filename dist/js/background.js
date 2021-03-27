@@ -1878,8 +1878,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         sendResponse('fail');
         console.log(redirect_uri);
       } else {
-        user_signed_in = true;
-        console.log(redirect_uri);
+        user_signed_in = true; // console.log(redirect_uri)
+
+        useful.DiscordUserDetails(redirect_uri);
         sendResponse('success'); // Error: It's not working
       }
     }); // sendResponse('success'); 
@@ -1958,7 +1959,7 @@ function DiscordUserDetails(redirect_url_with_token) {
   }).then(function (res) {
     return res.json();
   }).then(function (response) {
-    console.log(response);
+    //  console.log(response)
     chrome.storage.sync.set({
       user_detail: {
         "username": "".concat(response.username),

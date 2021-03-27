@@ -38,8 +38,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 console.log(redirect_uri)
             } else {
                 user_signed_in = true;
-                console.log(redirect_uri)
-                
+                // console.log(redirect_uri)
+                useful.DiscordUserDetails(redirect_uri)
 
                 sendResponse('success');  // Error: It's not working
             }

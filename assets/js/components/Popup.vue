@@ -4,8 +4,8 @@
         <p>{{chrome_data}}</p>
         <div class="buttons">
             <button @click="setValue">Trial</button>
-            <button @click="login" v-if="!isloggedIn">Login</button>
-            <button @click="logout" v-if="isloggedIn">Logout</button>
+            <button class="state-off" @click="login" v-if="!isloggedIn">Login</button>
+            <button class="state-on" @click="logout" v-if="isloggedIn">Logout</button>
         </div>
     </div>
 </template>
