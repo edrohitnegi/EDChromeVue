@@ -25,6 +25,7 @@
         "moment": "^2.29.1",
         "neo4j-driver": "^4.2.3",
         "node-url-shortener": "^1.1.11",
-        "path-browserify": "^1.0.1"
+        "path-browserify": "^1.0.1",
+        "vue-router": "^3.5.1"
     }
 }

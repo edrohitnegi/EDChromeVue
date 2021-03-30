@@ -1,11 +1,17 @@
 <template>
-    <div class="wrapper">
-        <h1 class="title">{{name}}</h1>
-        <div class="buttons">
-            <!-- <button @click="setValue">Trial</button> -->
-            <button class="state-off" @click="login" v-if="!isloggedIn">Login</button>
-            <button class="state-on" @click="logout" v-if="isloggedIn">Logout</button>
-        </div>
+     <div id="nav">
+        <nav>
+            <ul>
+                <div v-if="isloggedIn" class="right">
+                    <router-link tag="li" :to="{ name: 'welcome' }" >Hi {{chrome_data.username}}#{{chrome_data.discriminator}}</router-link>
+                    <li><router-link tag="a" :to='{ name: "charts" }'>Charts</router-link></li>
+                </div>
+                <div class="left">
+                    <button @click="login" v-if="!isloggedIn" class="btn btn-primary">LogIn</button>
+                    <button @click="logout" v-if="isloggedIn" class="btn btn-danger">Log Out</button>
+                </div>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -14,7 +20,8 @@ export default {
     data() {
         return {
             name: "EDChromeVue",
-            isloggedIn: false
+            isloggedIn: false,
+            chrome_data: ''
         }
     },
     methods: {
@@ -42,10 +49,39 @@ export default {
                 }
                 else {
                     this.isloggedIn = true
+                    this.chrome_data = result.user_detail;
                 }
         })
+
         
     }
 }
 </script>
+
+<style lang="scss">
+    #nav {
+        nav {
+            padding-top: 10px;
+            padding-right: 10px;
+            ul {
+                list-style-type: none;
+                display: flex;
+                justify-content: space-between;
+            }
+            .right {
+                display: flex;
+
+                li:first-child{
+                    font-weight: 800;
+                    padding-right: 20px;
+                }
+                li a{
+                    // text-decoration: none;
+                    color: rgba(2, 0, 114, 0.884);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+</style>
 
