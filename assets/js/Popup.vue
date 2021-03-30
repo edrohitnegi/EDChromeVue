@@ -24,6 +24,7 @@ export default {
 <style lang="scss">
     #app {
         min-width: 600px;
+        min-height: 500px;
     }
 </style>
     

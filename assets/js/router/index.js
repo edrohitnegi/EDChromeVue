@@ -15,6 +15,11 @@ const routes = [
     path: '/charts',
     name: 'charts',
     component: () => import(/* webpackChunkName: "charts" */ '../components/SkillGraph.vue'),
+  },
+  {
+    path: '*',
+    name: 'notfound',
+    component: Welcome,
   }
 ];
 
