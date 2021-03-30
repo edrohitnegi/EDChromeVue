@@ -2,5 +2,8 @@
     "/dist/js/background.js": "/dist/js/background.js",
     "/dist/js/content.js": "/dist/js/content.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
+    "/dist/js/pdfmake.js": "/dist/js/pdfmake.js",
+    "/dist/js/canvg.js": "/dist/js/canvg.js",
+    "/dist/js/xlsx.js": "/dist/js/xlsx.js",
     "/dist/css/popup.css": "/dist/css/popup.css"
 }
