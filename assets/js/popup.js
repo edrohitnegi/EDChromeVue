@@ -1,7 +1,8 @@
 import Vue from 'vue';
 
-import Popup from './components/Popup.vue';
-const app = new Vue({
-    el: '#app',
-    render: createElement => createElement(Popup)
-});
+import Popup from './Popup.vue';
+
+
+new Vue({
+    render: h => h(Popup),
+  }).$mount('#app')

@@ -23898,6 +23898,10 @@ instant.instant_execute(); // Shorcut Key definition
 _short.ShortHand();
 
 console.log('%c BOOST!!', 'font-weight: bold; font-size: 30px;color: white; text-shadow: 2px 2px 0 rgb(217,31,38)'); // const driver = neo4j.driver('neo4j://localhost:7687', neo4j.auth.basic('neo4j', 'edvanta'))
+
+chrome.storage.sync.get(['user_detail'], function (result) {
+  console.log(result.user_detail);
+});
 })();
 
 /******/ })()
