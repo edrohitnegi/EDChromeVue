@@ -2000,7 +2000,9 @@ module.exports = {
 /*!**************************************!*\
   !*** ./assets/js/modules/instant.js ***!
   \**************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var neo4jInstant = __webpack_require__(/*! ./neo4j */ "./assets/js/modules/neo4j.js");
 
 function instant_execute() {
   //99 Downloads
@@ -2009,6 +2011,7 @@ function instant_execute() {
       download.downloadCSV();
     }
   });
+  neo4jInstant.Neo4jSend();
 }
 
 module.exports = {

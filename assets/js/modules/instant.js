@@ -1,3 +1,6 @@
+var neo4jInstant = require('./neo4j')
+
+
 function instant_execute() {
     //99 Downloads
     chrome.storage.sync.get(['links'], function (result) {
@@ -5,6 +8,7 @@ function instant_execute() {
         download.downloadCSV();
         }
     });
+    neo4jInstant.Neo4jSend();
 }
 
 module.exports = {
