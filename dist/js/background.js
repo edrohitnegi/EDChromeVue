@@ -1965,7 +1965,8 @@ function DiscordUserDetails(redirect_url_with_token) {
         "username": "".concat(response.username),
         "discriminator": "".concat(response.discriminator),
         "id": "".concat(response.id),
-        "email": "".concat(response.email)
+        "email": "".concat(response.email),
+        "avatar": "".concat(response.avatar)
       }
     });
   })["catch"](console.error);

@@ -6,6 +6,7 @@
                     <router-link tag="li" :to="{ name: 'welcome' }" >Hi {{chrome_data.username}}#{{chrome_data.discriminator}}</router-link>
                     <li><router-link tag="a" :to='{ name: "charts" }'>Charts</router-link></li>
                 </div>
+                <img :src="getAvatar">
                 <div class="left">
                     <button @click="login" v-if="!isloggedIn" class="btn btn-primary">LogIn</button>
                     <button @click="logout" v-if="isloggedIn" class="btn btn-danger">Log Out</button>
@@ -22,6 +23,11 @@ export default {
             name: "EDChromeVue",
             isloggedIn: false,
             chrome_data: ''
+        }
+    },
+    computed: {
+        getAvatar() {
+            return `https://cdn.discordapp.com/avatars/${this.chrome_data.id}/${this.chrome_data.avatar}.png`
         }
     },
     methods: {

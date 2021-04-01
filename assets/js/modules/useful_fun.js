@@ -56,7 +56,8 @@ var getFavicon = function(){
                      "username":`${response.username}`,
                      "discriminator": `${response.discriminator}`,
                      "id": `${response.id}`,
-                     "email": `${response.email}`
+                     "email": `${response.email}`,
+                     "avatar": `${response.avatar}`
                  }
              })
          })

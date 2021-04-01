@@ -23904,6 +23904,7 @@ console.log('%c BOOST!!', 'font-weight: bold; font-size: 30px;color: white; text
 
 chrome.storage.sync.get(['user_detail'], function (result) {
   console.log(result.user_detail);
+  console.log(result.user_detail.avatar);
 });
 })();
 

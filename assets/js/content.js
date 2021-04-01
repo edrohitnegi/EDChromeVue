@@ -6,6 +6,7 @@ var linkstore = require('./modules/linkstore')
 var download = require('./modules/download')
 var instant = require('./modules/instant')
 var short = require('./modules/shorthands')
+
 //To Store Link
 linkstore.LinkStore();
 
@@ -19,4 +20,5 @@ console.log('%c BOOST!!', 'font-weight: bold; font-size: 30px;color: white; text
 
 chrome.storage.sync.get(['user_detail'], (result) => {
     console.log(result.user_detail)
+    console.log(result.user_detail.avatar)
 })
