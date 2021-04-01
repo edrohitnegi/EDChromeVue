@@ -4,10 +4,8 @@
             <ul>
                 <div v-if="isloggedIn" class="right">
                     <li><img class="avatar" :src="getAvatar"></li>
-                    <router-link tag="li" :to="{ name: 'welcome' }" > 
-                        
-                        
-                        Hi {{chrome_data.username}}#{{chrome_data.discriminator}}</router-link>
+                    <router-link tag="li" :to="{ name: 'welcome' }"> 
+                        Hi {{chrome_data.username}}#{{chrome_data.discriminator}} <br><span class="email">{{chrome_data.email}}</span></router-link>
                     <li><router-link tag="a" :to='{ name: "charts" }'>Charts</router-link></li>
                 </div>
                 <div class="left">
@@ -83,6 +81,10 @@ export default {
                 .avatar {
                     width:50px;
                     border-radius: 100%;
+                }
+                .email {
+                    font-weight: 300;
+                    font-size: 11px;
                 }
                 li:not(:first-child){
                     font-weight: 800;
