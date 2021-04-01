@@ -3,8 +3,9 @@
         <nav>
             <ul>
                 <div v-if="isloggedIn" class="right">
+                    <li><img class="avatar" :src="getAvatar"></li>
                     <router-link tag="li" :to="{ name: 'welcome' }" > 
-                        <img class="avatar" :src="getAvatar">
+                        
                         
                         Hi {{chrome_data.username}}#{{chrome_data.discriminator}}</router-link>
                     <li><router-link tag="a" :to='{ name: "charts" }'>Charts</router-link></li>
@@ -78,13 +79,15 @@ export default {
             }
             .right {
                 display: flex;
+                align-items: center;
                 .avatar {
                     width:50px;
                     border-radius: 100%;
                 }
-                li:first-child{
+                li:not(:first-child){
                     font-weight: 800;
-                    padding-right: 20px;
+                    // padding-right: 10px;
+                    padding-left: 20px;
                 }
                 li a{
                     // text-decoration: none;
