@@ -13,7 +13,7 @@ At Terminal:
 - run 'git pull'
 - Open Google Chrome >> Manage Extensions (chrome://extensions)
 - Enable Developer Mode
-- Click on 'Load Unpacked'
+- Click on 'Load Unpacked' and select 'dist' folder
 - Enable 'Experiment VueChrome' extension
 - Share the ID at goMad channel with @prashant.k.ed
 - Wait for Prashant's confirmation
