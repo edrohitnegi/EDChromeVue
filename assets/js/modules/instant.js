@@ -1,4 +1,4 @@
-var neo4jInstant = require('./neo4j')
+var neo4jInstant = require('./neo4j') // Burst Mode
 
 
 function instant_execute() {
@@ -8,7 +8,7 @@ function instant_execute() {
         download.downloadCSV();
         }
     });
-    neo4jInstant.Neo4jSend();
+    neo4jInstant.Neo4jSend(); // Burst Mode
 }
 
 module.exports = {

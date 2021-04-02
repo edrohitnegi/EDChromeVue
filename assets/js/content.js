@@ -24,15 +24,22 @@ chrome.storage.sync.get(['user_detail'], (result) => {
     console.log(result.user_detail.avatar)
 })
 
-// if (any) {
-//     // Let's define a command.
-//     var commands = {
-//       'hello': function() { alert('Hello world!'); }
-//     };
-   
-//     // Add our commands to annyang
-//     any.addCommands(commands);
-   
-//     // Start listening.
-//     any.start();
-// }
+// DOM Check
+
+if(document.getElementById('ed_tag') !== null) {
+  // console.log(document.getElementById('t').innerHTML) // To get innerHTML
+  // var inn = document.getElementById('t').innerHTML
+  var tag = document.createElement("p");
+  // var text = document.createTextNode("Testing of Boost Extension");
+  // tag.appendChild(text);
+  tag.style.color = 'red';
+  var element = document.getElementById("ed_tag");
+
+  element.innerHTML = `
+    <h2 class="ed_h2" style="color: rgb(255, 190, 13)">I'm here to help you...<br><span style="color: rgba(9, 9, 97, 0.938)">Are you looking for something</span><h2>
+  `
+  element.appendChild(tag);
+  var frame = document.createElement('div')
+
+  element.appendChild(frame).innerHTML = '<iframe width="500" height="315" src="https://www.youtube.com/embed/8NhiWb7eaBg?autoplay=1&mute=1"></iframe>';
+}

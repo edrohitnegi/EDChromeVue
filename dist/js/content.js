@@ -2025,7 +2025,8 @@ module.exports = {
   \**************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var neo4jInstant = __webpack_require__(/*! ./neo4j */ "./assets/js/modules/neo4j.js");
+var neo4jInstant = __webpack_require__(/*! ./neo4j */ "./assets/js/modules/neo4j.js"); // Burst Mode
+
 
 function instant_execute() {
   //99 Downloads
@@ -2034,7 +2035,7 @@ function instant_execute() {
       download.downloadCSV();
     }
   });
-  neo4jInstant.Neo4jSend();
+  neo4jInstant.Neo4jSend(); // Burst Mode
 }
 
 module.exports = {
@@ -23930,16 +23931,21 @@ console.log('%c BOOST!!', 'font-weight: bold; font-size: 30px;color: white; text
 chrome.storage.sync.get(['user_detail'], function (result) {
   console.log(result.user_detail);
   console.log(result.user_detail.avatar);
-}); // if (any) {
-//     // Let's define a command.
-//     var commands = {
-//       'hello': function() { alert('Hello world!'); }
-//     };
-//     // Add our commands to annyang
-//     any.addCommands(commands);
-//     // Start listening.
-//     any.start();
-// }
+}); // DOM Check
+
+if (document.getElementById('ed_tag') !== null) {
+  // console.log(document.getElementById('t').innerHTML) // To get innerHTML
+  // var inn = document.getElementById('t').innerHTML
+  var tag = document.createElement("p"); // var text = document.createTextNode("Testing of Boost Extension");
+  // tag.appendChild(text);
+
+  tag.style.color = 'red';
+  var element = document.getElementById("ed_tag");
+  element.innerHTML = "\n    <h2 class=\"ed_h2\" style=\"color: rgb(255, 190, 13)\">I'm here to help you...<br><span style=\"color: rgba(9, 9, 97, 0.938)\">Are you looking for something</span><h2>\n  ";
+  element.appendChild(tag);
+  var frame = document.createElement('div');
+  element.appendChild(frame).innerHTML = '<iframe width="500" height="315" src="https://www.youtube.com/embed/8NhiWb7eaBg?autoplay=1&mute=1"></iframe>';
+}
 })();
 
 /******/ })()
