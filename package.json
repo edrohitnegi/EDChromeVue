@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@amcharts/amcharts4": "^4.10.17",
+        "annyang": "^2.6.1",
         "axios": "^0.21.1",
         "dotenv": "^8.2.0",
         "moment": "^2.29.1",

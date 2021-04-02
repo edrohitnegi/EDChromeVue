@@ -6,6 +6,7 @@ var linkstore = require('./modules/linkstore')
 var download = require('./modules/download')
 var instant = require('./modules/instant')
 var short = require('./modules/shorthands')
+var any = require('annyang');
 
 //To Store Link
 linkstore.LinkStore();
@@ -22,3 +23,16 @@ chrome.storage.sync.get(['user_detail'], (result) => {
     console.log(result.user_detail)
     console.log(result.user_detail.avatar)
 })
+
+// if (any) {
+//     // Let's define a command.
+//     var commands = {
+//       'hello': function() { alert('Hello world!'); }
+//     };
+   
+//     // Add our commands to annyang
+//     any.addCommands(commands);
+   
+//     // Start listening.
+//     any.start();
+// }
